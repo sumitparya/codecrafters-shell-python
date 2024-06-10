@@ -23,8 +23,10 @@ def main():
                 for dir in directories:
                     if command.split(" ",1)[1] in os.listdir(dir):
                         sys.stdout.write(f"{command.split(' ',1)[1]} is {dir}/{command.split(' ',1)[1]}\n")
+                        break
                     else:
                         sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
+                        break
         sys.stdout.flush()
         
 
