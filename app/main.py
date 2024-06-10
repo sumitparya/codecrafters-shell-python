@@ -1,18 +1,19 @@
 import sys
 
+commands_list = ["exit 0"]
 
 def main():
-    # You can use print statements as follows for debugging, they'll be visible when running tests.
-    #print("Logs from your program will appear here!")
 
-    # Uncomment this block to pass the first stage
-    
     while True:
         sys.stdout.write("$ ")
         sys.stdout.flush()
-        # Wait for user input
         command = input()
-        sys.stdout.write(f"{command}: command not found\n")
+        if command not in commands_list:
+            sys.stdout.write(f"{command}: command not found\n")
+            sys.stdout.flush()
+        elif command == "exit 0":
+            sys.exit(0)
+            
 
 if __name__ == "__main__":
     main()
