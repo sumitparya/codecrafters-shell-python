@@ -1,6 +1,6 @@
 import sys
 
-commands_list = ["exit","echo"]
+commands_list = ["exit","echo","type"]
 
 def main():
 
@@ -18,6 +18,13 @@ def main():
             elif cmd == "echo":
                 sys.stdout.write(command.split(" ",1)[1] + "\n")
                 sys.stdout.flush()
+            elif cmd == "type":
+                if command.split(" ",1)[1] in commands_list:
+                    sys.stdout.write(f"{command.split(' ',1)[1]} is a shell builtin\n")
+                    sys.stdout.flush()
+                else:
+                    sys.stdout.write(f"{command}: command not found\n")
+                    sys.stdout.flush()
             
 
 if __name__ == "__main__":
