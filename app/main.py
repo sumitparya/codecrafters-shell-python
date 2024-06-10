@@ -1,6 +1,6 @@
 import sys
 
-commands_list = ["exit 0"]
+commands_list = ["exit 0","echo"]
 
 def main():
 
@@ -8,11 +8,16 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
         command = input()
-        if command not in commands_list:
+        cmd = command.split(" ",1)[0]
+        if cmd not in commands_list:
             sys.stdout.write(f"{command}: command not found\n")
             sys.stdout.flush()
-        elif command == "exit 0":
-            sys.exit(0)
+        else:
+            if cmd == "exit":
+                sys.exit(0)
+            elif cmd == "echo":
+                sys.stdout.write(command.split(" ",1)[1] + "\n")
+                sys.stdout.flush()
             
 
 if __name__ == "__main__":
