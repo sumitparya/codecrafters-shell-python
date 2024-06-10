@@ -26,7 +26,6 @@ def main():
                         break
                     else:
                         sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
-                        break
         sys.stdout.flush()
         
 
