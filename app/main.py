@@ -22,8 +22,11 @@ def main():
                 paths = os.environ.get('PATH')
                 directories = paths.split(':')
                 for dir in directories:
-                    if command.split(" ",1)[1] in os.listdir(dir):
-                        status=1              
+                    program_path = os.path.join(dir, command.split(" ",1)[1])
+                    if os.path.isfile(program_path):
+                        status=1
+                    else:
+                        status=0              
                 if status == 1:
                     sys.stdout.write(f"{command.split(' ',1)[1]} is {dir}/{command.split(' ',1)[1]}\n")
                 else:
