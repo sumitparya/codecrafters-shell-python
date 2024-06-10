@@ -2,7 +2,6 @@ import sys
 import os
 
 commands_list = ["exit","echo","type"]
-status=0
 
 def main():
 
@@ -20,15 +19,15 @@ def main():
                 sys.stdout.write(command.split(" ",1)[1] + "\n")
             elif cmd == "type":
                 paths = os.environ.get('PATH')
+                pa=None
                 directories = paths.split(':')
                 for dir in directories:
-                    program_path = os.path.join(dir, command.split(" ",1)[1])
-                    if os.path.isfile(program_path):
-                        status=1
-                    else:
-                        status=0              
-                if status == 1:
-                    sys.stdout.write(f"{command.split(' ',1)[1]} is {dir}/{command.split(' ',1)[1]}\n")
+                    if os.path.isfile(f"{dir}/{command.split(" ",1)[1]}"):
+                        pa = f"{dir}/{command.split(" ",1)[1]}"
+                if command.split(" ",1)[1] in commands_list:
+                    sys.stdout.write(f"{command.split(" ",1)[1]}: shell builtin\n")
+                elif pa:
+                    sys.stdout.write(f"{command.split(" ",1)[1]} is {pa}\n")
                 else:
                     sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
         sys.stdout.flush()
