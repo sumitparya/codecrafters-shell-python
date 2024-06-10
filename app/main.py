@@ -1,4 +1,5 @@
 import sys
+import os
 
 commands_list = ["exit","echo","type"]
 
@@ -17,10 +18,13 @@ def main():
             elif cmd == "echo":
                 sys.stdout.write(command.split(" ",1)[1] + "\n")
             elif cmd == "type":
-                if command.split(" ",1)[1] in commands_list:
-                    sys.stdout.write(f"{command.split(' ',1)[1]} is a shell builtin\n")
-                else:
-                    sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
+                paths = os.environ.get('PATH')
+                directories = paths.split(':')
+                for dir in directories:
+                    if command.split(" ",1)[1] in os.listdir(dir):
+                        sys.stdout.write(f"{command.split(' ',1)[1]} is {dir}/{command.split(' ',1)[1]}\n")
+                    else:
+                        sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
         sys.stdout.flush()
         
 
