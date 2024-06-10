@@ -21,10 +21,9 @@ def main():
             elif cmd == "type":
                 if command.split(" ",1)[1] in commands_list:
                     sys.stdout.write(f"{command.split(' ',1)[1]} is a shell builtin\n")
-                    sys.stdout.flush()
                 else:
                     sys.stdout.write(f"{command.split(' ',1)[1]}: command not found\n")
-                    sys.stdout.flush()
+                sys.stdout.flush()
         
 
 if __name__ == "__main__":
