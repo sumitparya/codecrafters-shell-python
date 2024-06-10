@@ -25,7 +25,7 @@ def main():
                     if os.path.isfile(f"{dir}/{command.split(" ",1)[1]}"):
                         pa = f"{dir}/{command.split(" ",1)[1]}"
                 if command.split(" ",1)[1] in commands_list:
-                    sys.stdout.write(f"{command.split(" ",1)[1]}: shell builtin\n")
+                    sys.stdout.write(f"{command.split(" ",1)[1]} is a shell builtin\n")
                 elif pa:
                     sys.stdout.write(f"{command.split(" ",1)[1]} is {pa}\n")
                 else:
