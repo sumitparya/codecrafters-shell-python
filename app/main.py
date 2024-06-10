@@ -1,6 +1,6 @@
 import sys
 
-commands_list = ["exit 0","echo"]
+commands_list = ["exit","echo"]
 
 def main():
 
