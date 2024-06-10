@@ -2,6 +2,7 @@ import sys
 import os
 
 commands_list = ["exit","echo","type"]
+status=0
 
 def main():
 
@@ -22,10 +23,11 @@ def main():
                 directories = paths.split(':')
                 for dir in directories:
                     if command.split(" ",1)[1] in os.listdir(dir):
-                        sys.stdout.write(f"{command.split(' ',1)[1]} is {dir}/{command.split(' ',1)[1]}\n")
-                        break
-                    else:
-                        sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
+                        status=1              
+                if status == 1:
+                    sys.stdout.write(f"{command.split(' ',1)[1]} is {dir}/{command.split(' ',1)[1]}\n")
+                else:
+                    sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
         sys.stdout.flush()
         
 
