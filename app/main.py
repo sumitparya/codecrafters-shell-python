@@ -23,7 +23,7 @@ def main():
                     sys.stdout.write(f"{command.split(' ',1)[1]} is a shell builtin\n")
                     sys.stdout.flush()
                 else:
-                    sys.stdout.write(f"{command}: command not found\n")
+                    sys.stdout.write(f"{command.split(' ',1)[1]}: command not found\n")
                     sys.stdout.flush()
         
 
