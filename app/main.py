@@ -27,7 +27,7 @@ def main():
                 sys.stdout.write(f"{command.split(" ",1)[1]} is {pa}\n")
             else:
                 sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
-        elif os.path.isfile(f"{dir}/{command.split(" ",1)[0]}"):
+        elif os.path.isfile(f"{paths}/{command.split(" ",1)[0]}"):
             os.system(command)
         else:
             sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
