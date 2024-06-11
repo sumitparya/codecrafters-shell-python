@@ -11,6 +11,7 @@ def main():
         command = input()
         cmd = command.split(" ",1)[0]
         paths = os.environ.get('PATH')
+        home = os.environ.get('HOME')
         directories = paths.split(':')
         pa=None
         ap=None
@@ -32,16 +33,19 @@ def main():
             else:
                 sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
         elif cmd == "cd":
-            try:
-                os.chdir(command.split(" ",1)[1])
-            except FileNotFoundError:
-                sys.stdout.write(f"cd: {command.split(' ',1)[1]}: No such file or directory\n")
+            if command.split(" ",1)[1] == "~":
+                os.chdir(home)
+            else:
+                try:
+                    os.chdir(command.split(" ",1)[1])
+                except FileNotFoundError:
+                    sys.stdout.write(f"cd: {command.split(' ',1)[1]}: No such file or directory\n")
         elif ap:
             os.system(command)
         else:
             sys.stdout.write(f"{command.split(' ',1)[0]}: command not found\n")
         sys.stdout.flush()
-        
+
 
 if __name__ == "__main__":
     main()
