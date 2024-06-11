@@ -19,7 +19,7 @@ def main():
         elif cmd == "type":
             directories = paths.split(':')
             for dir in directories:
-                if os.path.isfile(f"{dir}/{command.split(" ",1)[1]}") and os.access(f"{dir}/{command.split(" ",1)[1]}", os.X_OK):
+                if os.path.isfile(f"{dir}/{command.split(" ",1)[1]}"):
                     pa = f"{dir}/{command.split(" ",1)[1]}"
             if command.split(" ",1)[1] in commands_list:
                 sys.stdout.write(f"{command.split(" ",1)[1]} is a shell builtin\n")
@@ -27,7 +27,7 @@ def main():
                 sys.stdout.write(f"{command.split(" ",1)[1]} is {pa}\n")
             else:
                 sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
-        elif os.path.isfile(f"{dir}/{command.split(" ",1)[0]}") and os.access(f"{dir}/{command.split(" ",1)[0]}", os.X_OK):
+        elif os.path.isfile(f"{dir}/{command.split(" ",1)[0]}"):
             os.system(command)
         else:
             sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
