@@ -1,7 +1,7 @@
 import sys
 import os
 
-commands_list = ["exit","echo","type"]
+commands_list = ["exit","echo","type","cd"]
 
 def main():
 
@@ -31,6 +31,11 @@ def main():
                 sys.stdout.write(f"{command.split(" ",1)[1]} is {pa}\n")
             else:
                 sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
+        elif cmd == "cd":
+            try:
+                os.chdir(command.split(" ",1)[1])
+            except FileNotFoundError:
+                sys.stdout.write(f"cd: {command.split(' ',1)[1]}: No such file or directory\n")
         elif ap:
             os.system(command)
         else:
