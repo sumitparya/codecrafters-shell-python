@@ -11,13 +11,17 @@ def main():
         command = input()
         cmd = command.split(" ",1)[0]
         paths = os.environ.get('PATH')
+        directories = paths.split(':')
         pa=None
+        ap=None
+        for dir in directories:
+            if os.path.isfile(f"{dir}/{command.split(" ",1)[0]}"):
+                ap = f"{dir}/{command.split(" ",1)[0]}"
         if cmd == "exit":
             sys.exit(0)
         elif cmd == "echo":
             sys.stdout.write(command.split(" ",1)[1] + "\n")
         elif cmd == "type":
-            directories = paths.split(':')
             for dir in directories:
                 if os.path.isfile(f"{dir}/{command.split(" ",1)[1]}"):
                     pa = f"{dir}/{command.split(" ",1)[1]}"
@@ -27,7 +31,7 @@ def main():
                 sys.stdout.write(f"{command.split(" ",1)[1]} is {pa}\n")
             else:
                 sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
-        elif os.path.isfile(f"{paths}/{command.split(" ",1)[0]}"):
+        elif ap:
             os.system(command)
         else:
             sys.stdout.write(f"{command.split(' ',1)[1]}: not found\n")
