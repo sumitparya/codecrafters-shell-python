@@ -26,6 +26,10 @@ def main():
         executable_path = None
         builtin_path = None
         
+        for dir in directories:
+            if os.path.isfile(f"{dir}/{command.split(' ', 1)[0]}"):
+                builtin_path = f"{dir}/{command.split(' ', 1)[0]}"
+        
         # Check if the command is "exit"
         if cmd == "exit":
             sys.exit(0)
