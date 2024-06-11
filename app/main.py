@@ -36,7 +36,7 @@ def main():
         else:
             sys.stdout.write(f"{command.split(' ',1)[0]}: command not found\n")
         sys.stdout.flush()
-        
+    
 
 if __name__ == "__main__":
     main()
